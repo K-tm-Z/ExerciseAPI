@@ -85,18 +85,34 @@ fun ActivityLogCard(log: ActivityLog, onEditClick: (ActivityLog) -> Unit) {
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier.fillMaxWidth()
             ) {
+                Column(
+                    horizontalAlignment = Alignment.Start,
+                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
+                    Text("Name: ${log.name}", style = MaterialTheme.typography.bodyMedium)
+                    Text("Muscle: ${log.muscle}", style = MaterialTheme.typography.bodyMedium)
+                    Text(
+                        "Difficulty: ${log.difficulty}",
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                }
+                Column (
+                    horizontalAlignment = Alignment.End,
+                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
                 Text("Duration: ${log.durationMinutes} min")
-                Text("Calories: ${log.caloriesBurned}")
+                Text("Calories: ${log.caloriesBurned} kCal")
+                Spacer(Modifier.height(4.dp))
+                Text(
+                    "Time: ${
+                        SimpleDateFormat("yyyy-MM-dd HH:mm")
+                            .format(Date(log.timestamp))
+                    }",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                }
             }
-            Spacer(Modifier.height(4.dp))
-            Text(
-                "Time: ${
-                    SimpleDateFormat("yyyy-MM-dd HH:mm")
-                        .format(Date(log.timestamp))
-                }",
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
         }
     }
 }
